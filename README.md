@@ -2,10 +2,12 @@
 
 # Group Details 
 Chahat Kalra   2022H1120278P 
+
 Soumya Agrawal 2022H1120289P
 
 # Prerequisites
 -Python 3.x
+
 -grpc Library
 
 # Setup
