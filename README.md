@@ -18,7 +18,13 @@ git clone https://github.com/SoumyaAgrawal1/AOS_Assignment_first.git
 pip install -r requirements.txt
 '''
 # Running the Simulation
-1.Start the RPC Server on the same machine
+1.Run this command
+'''
+python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. battlefield.proto
+'''
+This generates battlefield_pb2.py and battlefield_pb2_grpc.py files.
+
+2.Start the RPC Server on the same machine
 '''
 python server.py
 '''
