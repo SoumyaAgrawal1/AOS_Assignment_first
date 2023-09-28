@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+message Soldier {
+  int32 id = 1;
+  int32 x = 2;
+  int32 y = 3;
+  bool is_alive = 4;
+  bool is_commander = 5;
+  int32 Si = 6;
+}
+
+message InitializeRequest {
+  int32 n = 1;
+  int32 m = 2;
+}
+
+message InitializeResponse {
+  repeated Soldier soldiers = 1;
+  string battlefield_layout = 2;
+}
+
+
+message AddSoldierRequest {
+  Soldier soldier = 1;
+}
+
+message AddSoldierResponse {
+  string message = 1;
+}
+
+message GetInitialLayoutRequest {}
+
+message GetInitialLayoutResponse {
+  repeated Soldier soldiers = 1;
+  string battlefield_layout = 2;
+}
+
+
+message BattlefieldMissileRequest {
+  int32 x = 1;
+  int32 y = 2;
+  int32 missile_type = 3;
+  int32 missile_time = 4;
+}
+
+message MissileResponse {
+  string message = 1;
+}
+
+message Empty{}
+
+message StatusAllResponse {
+  repeated Soldier alive_soldiers = 1;
+  repeated Soldier dead_soldiers = 2;
+}
+
+message CommanderId{
+  int32 id=1;
+}
+
+message BroadcastRequest {
+  int32 soldier_id = 1;
+  int32 x = 2;
+  int32 y = 3;
+  int32 missile_type = 4;
+  int32 missile_time = 5;
+}
+
+
+message BroadcastResponse {
+  string message = 1;
+}
+
+message WasHitRequest {
+  int32 soldier_id = 1;
+}
+
+message WasHitResponse {
+  bool hit = 1;
+}
+
+
+
+service BattlefieldService {
+  rpc InitializeBattlefield (InitializeRequest) returns (InitializeResponse);
+  rpc AddSoldier (AddSoldierRequest) returns (AddSoldierResponse);
+  rpc GetInitialLayout (GetInitialLayoutRequest) returns (GetInitialLayoutResponse);
+  rpc LaunchMissile (BattlefieldMissileRequest) returns (MissileResponse);
+  rpc StatusAll (Empty) returns (StatusAllResponse);
+  rpc FindCommander (Empty) returns (CommanderId);
+  rpc MakeCommander (Empty) returns (CommanderId);
+  rpc MissileApproaching(BroadcastRequest) returns (BroadcastResponse);
+  rpc WasHit (WasHitRequest) returns (WasHitResponse);
+}
