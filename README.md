@@ -35,7 +35,7 @@ This generates battlefield_pb2.py and battlefield_pb2_grpc.py files.
 python server.py
 '''
 
-2.Start the RPC Client on the same machine
+3.Start the RPC Client on the same machine
 
 '''
 python client.py
